@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="jetarm_6dof">
+  <joint name="base_joint" type="fixed">
+    <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+    <parent link="world"/>
+    <child link="base_link"/>
+  </joint>
+  <joint name="gripper_servo_joint" type="fixed">
+    <origin xyz="0. 0. 0." rpy="3.1415927 0. 3.1415927"/>
+    <parent link="link5"/>
+    <child link="gripper_servo_link"/>
+  </joint>
+  <joint name="joint1" type="revolute">
+    <origin xyz="0. 0. 0.1031492" rpy="0. -1.5707963 0. "/>
+    <parent link="base_link"/>
+    <child link="link1"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-2.0999997" upper="2.0999997" effort="6." velocity="0.524"/>
+  </joint>
+  <joint name="joint2" type="revolute">
+    <origin xyz="0. 0. 0." rpy="0. 0. -1.5707964"/>
+    <parent link="link1"/>
+    <child link="link2"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-2.0999997" upper="2.0999997" effort="6." velocity="0.524"/>
+  </joint>
+  <joint name="joint3" type="revolute">
+    <origin xyz="0. 0.1294176 0. " rpy="0. 0. 0."/>
+    <parent link="link2"/>
+    <child link="link3"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-2.0999997" upper="2.0999997" effort="6." velocity="0.524"/>
+  </joint>
+  <joint name="joint4" type="revolute">
+    <origin xyz="0. 0.1294176 0. " rpy="0. 0. 0."/>
+    <parent link="link3"/>
+    <child link="link4"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-2.0999997" upper="2.0999997" effort="6." velocity="0.524"/>
+  </joint>
+  <joint name="joint5" type="revolute">
+    <origin xyz="0. 0.0594531 0. " rpy="0. 0. 1.5707964"/>
+    <parent link="link4"/>
+    <child link="link5"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-2.0999997" upper="2.0999997" effort="6." velocity="0.524"/>
+  </joint>
+  <joint name="l_in_joint" type="revolute">
+    <origin xyz="-0.0459911 0.0075039 -0.0065053" rpy="0. -1.5707963 0. "/>
+    <parent link="gripper_servo_link"/>
+    <child link="l_in_link"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5699999" upper="1.5699999" effort="0." velocity="2."/>
+  </joint>
+  <joint name="l_joint" type="revolute">
+    <origin xyz="-0.027008 0.0140002 -0.0073115" rpy="0. -1.5707963 0. "/>
+    <parent link="gripper_servo_link"/>
+    <child link="l_link"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5699999" upper="1.5699999" effort="0." velocity="2."/>
+  </joint>
+  <joint name="l_out_joint" type="revolute">
+    <origin xyz="0. 0. 0.029" rpy="0. 0. 0."/>
+    <parent link="l_in_link"/>
+    <child link="l_out_link"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5699999" upper="1.5699999" effort="0." velocity="2."/>
+  </joint>
+  <joint name="link5_endpoint" type="fixed">
+    <origin xyz="0.1105469 0. 0. " rpy="3.1415927 0. 3.1415927"/>
+    <parent link="link5"/>
+    <child link="jetarm_6dof_endpoint"/>
+  </joint>
+  <joint name="r_in_joint" type="revolute">
+    <origin xyz="-0.0459914 -0.0075039 -0.0065253" rpy="-3.1415927 1.5707963 0. "/>
+    <parent link="gripper_servo_link"/>
+    <child link="r_in_link"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5699999" upper="1.5699999" effort="0." velocity="2."/>
+  </joint>
+  <joint name="r_joint" type="revolute">
+    <origin xyz="-0.0270071 -0.0139998 -0.0070477" rpy="0. -1.5707963 0. "/>
+    <parent link="gripper_servo_link"/>
+    <child link="r_link"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="0." upper="1.5699999" effort="1000." velocity="2."/>
+  </joint>
+  <joint name="r_out_joint" type="revolute">
+    <origin xyz="0. 0. 0.029" rpy="0. 0. 0."/>
+    <parent link="r_in_link"/>
+    <child link="r_out_link"/>
+    <axis xyz="1. 0. 0."/>
+    <limit lower="-1.5699999" upper="1.5699999" effort="0." velocity="2."/>
+  </joint>
+  <joint name="root_joint" type="fixed">
+    <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+    <parent link="jetarm_6dof"/>
+    <child link="world"/>
+  </joint>
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.1"/>
+      <inertia ixx="0." ixy="0." ixz="0." iyy="0." iyz="0." izz="0."/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/base_link_collisions.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/base_link_visuals_mesh_0.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/base_link_visuals_mesh_1.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/base_link_visuals_mesh_2.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/mesh_3.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/base_link_collisions.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="gripper_servo_link">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.0174988"/>
+      <inertia ixx="0." ixy="0." ixz="0." iyy="0." iyz="0." izz="0."/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. -1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/gripper_servo_link_visuals.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. -1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/gripper_servo_link_collisions.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. -1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/gripper_servo_link_collisions.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="jetarm_6dof"/>
+  <link name="jetarm_6dof_endpoint">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.000001"/>
+      <inertia ixx="0." ixy="0." ixz="0." iyy="0." iyz="0." izz="0."/>
+    </inertial>
+  </link>
+  <link name="l_in_link">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.00001"/>
+      <inertia ixx="0." ixy="0." ixz="0." iyy="0." iyz="0." izz="0."/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 1.5707964"/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/l_in_link_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 1.5707964"/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/l_in_link_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. 1.5707964"/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/l_in_link_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="l_link">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.00001"/>
+      <inertia ixx="0." ixy="0." ixz="0." iyy="0." iyz="0." izz="0."/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 1.5707964"/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/l_link_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 1.5707964"/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/l_link_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. 1.5707964"/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/l_link_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="l_out_link">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.00001"/>
+      <inertia ixx="0." ixy="0." ixz="0." iyy="0." iyz="0." izz="0."/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 1.5707964"/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/l_out_link_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 1.5707964"/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/l_out_link_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. 1.5707964"/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/l_out_link_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="link1">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.001"/>
+      <inertia ixx="0." ixy="0." ixz="0." iyy="0." iyz="0." izz="0."/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/link1_collisions.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/link1_visuals_mesh_0.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/link1_visuals_mesh_1.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/link1_collisions.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="link2">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.001"/>
+      <inertia ixx="0." ixy="0." ixz="0." iyy="0." iyz="0." izz="0."/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/link2_collisions.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/link2_visuals_mesh_0.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/link2_visuals_mesh_1.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/link2_visuals_mesh_2.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/link2_collisions.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="link3">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.001"/>
+      <inertia ixx="0." ixy="0." ixz="0." iyy="0." iyz="0." izz="0."/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/link3_collisions.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/link3_visuals_mesh_0.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/link3_visuals_mesh_1.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/link3_visuals_mesh_2.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/link3_collisions.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="link4">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.001"/>
+      <inertia ixx="0." ixy="0." ixz="0." iyy="0." iyz="0." izz="0."/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/link4_collisions.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/link4_visuals_mesh_0.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/link4_visuals_mesh_1.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/link4_visuals_mesh_2.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/link4_collisions.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="link5">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.001"/>
+      <inertia ixx="0." ixy="0." ixz="0." iyy="0." iyz="0." izz="0."/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/link5_visuals.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/link5_collisions.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 1.5707963 0. "/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/link5_collisions.obj" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="r_in_link">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.00001"/>
+      <inertia ixx="0." ixy="0." ixz="0." iyy="0." iyz="0." izz="0."/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/r_in_link_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/r_in_link_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/r_in_link_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="r_link">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.00001"/>
+      <inertia ixx="0." ixy="0." ixz="0." iyy="0." iyz="0." izz="0."/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 1.5707964"/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/r_link_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. 1.5707964"/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/r_link_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. 1.5707964"/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/r_link_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="r_out_link">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.00001"/>
+      <inertia ixx="0." ixy="0." ixz="0." iyy="0." iyz="0." izz="0."/>
+    </inertial>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/r_out_link_visuals.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0. 0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/r_out_link_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0. 0. 0." rpy="0. 0. -1.5707964"/>
+      <geometry>
+        <mesh filename="package://jetarm_6dof_description/meshes/r_out_link_collisions.obj" scale="1. 1. 1."/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="world">
+    <inertial>
+      <origin xyz="0. 0. 0." rpy="0. 0. 0."/>
+      <mass value="0.000001"/>
+      <inertia ixx="0." ixy="0." ixz="0." iyy="0." iyz="0." izz="0."/>
+    </inertial>
+  </link>
+</robot>
